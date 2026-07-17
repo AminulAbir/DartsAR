@@ -35,8 +35,18 @@ To systematically neutralize the obstacles, a comprehensive software architectur
 * **Session Logging:** Data logging scripts captured real-time positional and rotational transform matrices across 40 distinct virtual sensor channels, covering the Headset, Left Hand, and Right Hand.
 
 ### Preprocessing & Feature Engineering
-* **Data Cleansing:** Aggregated raw data streams at the session level using the explicit `SessionStarted` markers.
-* **Height Normalization:** Performed a strict body-height normalization across all recorded sensor Y-axis coordinates to isolate purely behavioral mechanics from raw physical stature.
+* **Data Exploration & Dataset Overview:** Explored dataset scales and variations per participant to check sample length balances. As shown below, total observations varied based on movement speeds and trial configurations.
+
+![Number of Data Points per Participant](Visualisation/Number_Datapoints_Participant.png)
+
+* **Height Normalization & Statistical Distribution:** Performed a strict body-height normalization across all recorded sensor Y-axis coordinates to isolate purely behavioral mechanics from raw physical stature. Key target variables (like vertical and horizontal head coordinates) show significant, non-overlapping personal bands that aid distinct classification.
+
+![Distribution of Key Variables by Participant](Visualisation/Boxplots_of_Key_Variables.png)
+
+* **Trajectory Exploration:** Plotted 3D spatial coordinate patterns (Headset positions vs Hand controller data) to isolate the unique physical paths and motion flow distinct to specific test users.
+
+![Movement Trajectories](Visualisation/movement_trajectory.png)
+
 * **Feature Extraction:** Extracted four core robust statistical features—minimum (`min`), maximum (`max`), mean (`mean`), and standard deviation (`std`)—across all sensor channels, resulting in a flat vector of 160 features per unique session.
 * **Machine Learning Pipelines:** Tested and benchmarked four distinct classification algorithms in Python (`scikit-learn`): Random Forest, Decision Tree, XGBoost, and Gradient Boosting.
 * **Cross-Validation Strategy:** Executed a robust 3-fold stratified cross-validation on the 38 processed session rows to guarantee an unbiased, well-generalized evaluation of overall classification performance.
@@ -80,6 +90,8 @@ Std samples per participant: 52399.4
 ### Confusion Matrix
 The cross-validated confusion matrix demonstrates high diagonal concentration, reflecting accurate classifications across almost all test cases:
 
+![Confusion Matrix](Visualisation/confusion_matrix.png)
+
 | True \ Predicted | Abir | Akbar | Daniel | Fardin | Marian | Maurice | Oguz | Reza | Spieler4 | Spieler5 |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Abir** | **6** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
@@ -94,6 +106,10 @@ The cross-validated confusion matrix demonstrates high diagonal concentration, r
 | **Spieler5** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | **2** |
 
 ### Key Analysis & Interpretation
-* **Feature Importance Insights:** Feature weight metrics revealed that head rotation (quaternion coordinates `Qx`, `Qz`, `Qw`), vertical head tracking variables (`Py`, `Pz` statistics), and dominant right-hand positional paths were the primary indicators. This confirms that subtle, unconscious biomechanical habits like head-tilt adjustments during aiming and arm acceleration styles are strongly person-specific.
+The Random Forest model relies deeply on distinct spatial-temporal metrics. An evaluation of the top feature importance vectors provides insight into exactly which biometrics differentiate users:
+
+![Top 20 Most Important Features](Visualisation/feature_importance.png)
+
+* **Feature Importance Insights:** Feature weight metrics revealed that head rotation (quaternion coordinates `Head_Qz_mean`, `Head_Qw_max`, `Head_Rz_mean`), vertical head tracking variables (`Head_Pz_min`, `Head_Pz_mean`), and dominant hand paths (`Right_Qx_max`, `Right_Py_mean`) were the primary indicators. This confirms that subtle, unconscious biomechanical habits like head-tilt adjustments during aiming and arm acceleration styles are strongly person-specific and form stable signatures.
 * **Error Analysis:** The minimal misclassifications present in the matrix (e.g., Akbar being confused with Oguz once, and Reza with Abir once) occurred entirely among individuals who shared similar throwing speed profiles or exhibited slight stylistic variations between separate throwing rounds.
 * **Normalization Efficacy:** The session-based spatial normalization successfully eliminated physical height dependencies. This removed physical bias, allowing the machine learning pipeline to focus strictly on pure verhaltensbiometrische (behavioral biometric) motion traits.
