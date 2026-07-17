@@ -1,8 +1,8 @@
 # Biometric User Identification in AR Mini-Game
 
 ## Authors
-* **Md Aminul Islam**
 * **Rezaul Hoque**
+* **Md Aminul Islam**
 
 ---
 
