@@ -33,23 +33,23 @@ To systematically neutralize the obstacles, a comprehensive software architectur
 ### Gameplay Interface & User Experience Visualizations
 The visual look, core features, and interactive flow of the application are represented below by 5 mixed-reality screenshots from the application runtime environment:
 
-* **Main Menu / Game Initialization (`dart5.jpg`):** Displays the introductory interface panel anchored into the user's mixed reality room. It features a minimalist clean environment configuration with a "START GAME" option and an "EXIT" button accompanying the core headset-tracked "DARTS" logo [cite: 2].
+* **Main Menu / Game Initialization:** Displays the introductory interface panel anchored into the user's mixed reality room. It features a minimalist clean environment configuration with a "START GAME" option and an "EXIT" button accompanying the core headset-tracked "DARTS" logo [cite: 2].
 
 ![Main Menu](Visualisation/dart5.jpg)
 
-* **Dart Pickup and Initial Aiming (`dart1.jpg`):** Shows the initial interactive phase where the system initializes hand-tracking and generates a stylized virtual glove tracking the user's grip [cite: 2]. A protective geometric grid overlay bounds the spatial workspace, while the real-time HUD scoreboard initializes at "Total: 0" and "Hit: -" [cite: 2].
+* **Dart Pickup and Initial Aiming:** Shows the initial interactive phase where the system initializes hand-tracking and generates a stylized virtual glove tracking the user's grip [cite: 2]. A protective geometric grid overlay bounds the spatial workspace, while the real-time HUD scoreboard initializes at "Total: 0" and "Hit: -" [cite: 2].
 
 ![Dart Pickup and Initial Aiming](Visualisation/dart1.jpg)
 
-* **Dynamic Throwing & Spatial Guidance Tracking (`dart2.jpg`):** Illustrates the throw release phase. Velocity smoothing filters out any tracking noise as the player releases the stabilized dart toward the target [cite: 2]. Active tracking outlines and a red spatial target boundary overlay guide human focus, and the points display updates immediately upon hit registration (e.g., "Total: 60", "Hit: Triple 60") [cite: 2].
+* **Dynamic Throwing & Spatial Guidance Tracking:** Illustrates the throw release phase. Velocity smoothing filters out any tracking noise as the player releases the stabilized dart toward the target [cite: 2]. Active tracking outlines and a red spatial target boundary overlay guide human focus, and the points display updates immediately upon hit registration (e.g., "Total: 60", "Hit: Triple 60") [cite: 2].
 
 ![Dynamic Throwing & Spatial Guidance Tracking](Visualisation/dart2.jpg)
 
-* **Target Accuracy and Scoring Loops (`dart3.jpg`):** Visualizes successive interactive loops where multiple stabilized darts adhere directly to the target sectors via collision mechanics [cite: 2]. The real-time scoring overlay dynamically updates running totals (e.g., "Total: 70", "Hit: Single 10") [cite: 2].
+* **Target Accuracy and Scoring Loops:** Visualizes successive interactive loops where multiple stabilized darts adhere directly to the target sectors via collision mechanics [cite: 2]. The real-time scoring overlay dynamically updates running totals (e.g., "Total: 70", "Hit: Single 10") [cite: 2].
 
 ![Target Accuracy and Scoring Loops](Visualisation/dart3.jpg)
 
-* **System Control Overlays / Game Options (`dart4.jpg`):** Showcases the secondary administrative option deck available during and after the trial session, giving players access to "RESET" the current testing frame or "RETURN" to the default system menu [cite: 2].
+* **System Control Overlays / Game Options:** Showcases the secondary administrative option deck available during and after the trial session, giving players access to "RESET" the current testing frame or "RETURN" to the default system menu [cite: 2].
 
 ![System Control Overlays / Game Options](Visualisation/dart4.jpg)
 
