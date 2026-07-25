@@ -2,12 +2,12 @@
 
 ## Authors
 * **Rezaul Hoque**
-* **Md Aminul Islam**
+* **MD Aminul Islam**
 
----
+
 
 ## 1. Situation
-Within the scope of the second Usable Security Lab, an Augmented Reality (AR) mini-game was successfully implemented using Unity 2022 for the Meta Quest 3 standalone headset. The primary goal was to design and deploy a brief, 30-second interaction scenario capable of recording user behavioral data for biometric evaluation and machine-learning-based identification. 
+Within the scope of the second Usable Security Lab, an Augmented Reality (AR) mini-game was successfully implemented using Unity 2022 for the Meta Quest headsets. The primary goal was to design and deploy a brief, 30-second interaction scenario capable of recording user behavioral data for biometric evaluation and machine-learning-based identification. 
 
 To achieve a clean blend of habituation and distinctiveness, a physics-based dart-throwing scenario was constructed. Players pick up a virtual dart using controllers or hand-tracking, aim at a physical/virtual dartboard mapped into their space, and execute a throw toward the target. The core objective of the interaction layout was to design a simple, routine movement pattern that becomes intuitive after just a few attempts, while preserving deep, un-spoofable personal distinctiveness to support continuous user authentication through behavioral tracking.
 
@@ -93,16 +93,16 @@ The log output shows substantial tracking lengths and varying samples across par
 ============================================================
 Samples per participant:
 target_feature
-Abir          8820
-Akbar       131760
-Daniel       71835
-Fardin       26715
-Marian       33690
-Maurice      47070
-Oguz        167970
-Reza         14061
-Spieler4     39600
-Spieler5     33270
+Participant_01 8820
+Participant_02 131760
+Participant_03 71835
+Participant_04 26715
+Participant_05 33690
+Participant_06 47070
+Participant_07 167970
+Participant_08 14061
+Participant_09 39600
+Participant_10 33270
 dtype: int64
 
 Total samples: 574791
@@ -115,18 +115,18 @@ The cross-validated confusion matrix demonstrates high diagonal concentration, r
 
 ![Confusion Matrix](Visualisation/confusion_matrix.png)
 
-| True \ Predicted | Abir | Akbar | Daniel | Fardin | Marian | Maurice | Oguz | Reza | Spieler4 | Spieler5 |
+| True \ Predicted | Participant_01 | Participant_02 | Participant_03 | Participant_04 | Participant_05 | Participant_06 | Participant_07 | Participant_08 | Participant_09 | Participant_10 |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Abir** | **6** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| **Akbar** | 0 | **2** | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
-| **Daniel** | 0 | 0 | **3** | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| **Fardin** | 0 | 0 | 0 | **3** | 0 | 0 | 0 | 0 | 0 | 0 |
-| **Marian** | 0 | 0 | 0 | 0 | **3** | 0 | 0 | 0 | 0 | 0 |
-| **Maurice** | 0 | 0 | 0 | 0 | 0 | **3** | 0 | 0 | 0 | 0 |
-| **Oguz** | 0 | 0 | 0 | 0 | 0 | 0 | **6** | 0 | 0 | 0 |
-| **Reza** | 1 | 0 | 0 | 0 | 0 | 0 | 0 | **6** | 0 | 0 |
-| **Spieler4** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | **2** | 0 |
-| **Spieler5** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | **2** |
+| **Participant_01** | **6** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **Participant_02** | 0 | **2** | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
+| **Participant_03** | 0 | 0 | **3** | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **Participant_04** | 0 | 0 | 0 | **3** | 0 | 0 | 0 | 0 | 0 | 0 |
+| **Participant_05** | 0 | 0 | 0 | 0 | **3** | 0 | 0 | 0 | 0 | 0 |
+| **Participant_06** | 0 | 0 | 0 | 0 | 0 | **3** | 0 | 0 | 0 | 0 |
+| **Participant_07** | 0 | 0 | 0 | 0 | 0 | 0 | **6** | 0 | 0 | 0 |
+| **Participant_08** | 1 | 0 | 0 | 0 | 0 | 0 | 0 | **6** | 0 | 0 |
+| **Participant_09** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | **2** | 0 |
+| **Participant_10** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | **2** |
 
 ### Key Analysis & Interpretation
 The Random Forest model relies deeply on distinct spatial-temporal metrics. An evaluation of the top feature importance vectors provides insight into exactly which biometrics differentiate users:
@@ -134,5 +134,5 @@ The Random Forest model relies deeply on distinct spatial-temporal metrics. An e
 ![Top 20 Most Important Features](Visualisation/feature_importance.png)
 
 * **Feature Importance Insights:** Feature weight metrics revealed that head rotation (quaternion coordinates `Head_Qz_mean`, `Head_Qw_max`, `Head_Rz_mean`), vertical head tracking variables (`Head_Pz_min`, `Head_Pz_mean`), and dominant hand paths (`Right_Qx_max`, `Right_Py_mean`) were the primary indicators. This confirms that subtle, unconscious biomechanical habits like head-tilt adjustments during aiming and arm acceleration styles are strongly person-specific and form stable signatures.
-* **Error Analysis:** The minimal misclassifications present in the matrix (e.g., Akbar being confused with Oguz once, and Reza with Abir once) occurred entirely among individuals who shared similar throwing speed profiles or exhibited slight stylistic variations between separate throwing rounds.
+* **Error Analysis:** The minimal misclassifications present in the matrix (e.g., Participant_02 being confused with Participant_07 once, and Participant_08 with Participant_01 once) occurred entirely among individuals who shared similar throwing speed profiles or exhibited slight stylistic variations between separate throwing rounds.
 * **Normalization Efficacy:** The session-based spatial normalization successfully eliminated physical height dependencies. This removed physical bias, allowing the machine learning pipeline to focus strictly on pure verhaltensbiometrische (behavioral biometric) motion traits.
